@@ -1,5 +1,6 @@
 package com.project.ems_backend.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,10 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginResponse {
+public class ResetPasswordRequest {
 
-    private String token;
-    private String role;
     private String userName;
-    private Boolean isPasswordReset;
+    private String oldPassword;
+    private String newPassword;
 }

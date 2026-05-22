@@ -1,21 +1,18 @@
 package com.project.ems_backend.controller;
 
+import com.project.ems_backend.dto.EmployeeCreateRequest;
 import com.project.ems_backend.dto.EmployeeDto;
 import com.project.ems_backend.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@EnableWebSecurity
-@EnableMethodSecurity
 @RequestMapping("/api/employees")
 @AllArgsConstructor
 public class EmployeeController {
@@ -24,9 +21,9 @@ public class EmployeeController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> g(@RequestBody EmployeeDto employeeDto)
+    public ResponseEntity<?> createEmployee(@RequestBody EmployeeCreateRequest employeeRequest)
     {
-       EmployeeDto savedEmployee= employeeService.createEmployee(employeeDto);
+       EmployeeDto savedEmployee= employeeService.createEmployee(employeeRequest);
         return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 

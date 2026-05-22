@@ -7,21 +7,30 @@ public class EmployeeMapper {
 
     public static Employee mapToEmployeeDto(EmployeeDto employeeDto)
     {
-        return new Employee(
-                employeeDto.getId(),
-                employeeDto.getFirstName(),
-                employeeDto.getLastName(),
-                employeeDto.getEmail()
-        );
+        Employee employee = new Employee();
+        employee.setFirstName(employeeDto.getFirstName());
+        employee.setLastName(employeeDto.getLastName());
+        employee.setEmail(employeeDto.getEmail());
+        employee.setDepartment(employeeDto.getDepartment());
+        employee.setPhone(employeeDto.getPhone());
+        employee.setDesignation(employeeDto.getDesignation());
+        employee.setDateOfJoining(employeeDto.getDateOfJoining());
+        employee.setIsActive(employeeDto.getIsActive()!=null?employeeDto.getIsActive():true);
+        return employee;
     }
 
     public static EmployeeDto mapToEmployee(Employee employee)
     {
-        return new EmployeeDto(
-                employee.getId(),
-                employee.getFirstName(),
-                employee.getLastName(),
-                employee.getEmail()
-        );
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setId(employee.getId());
+        employeeDto.setFirstName(employee.getFirstName());
+        employeeDto.setLastName(employee.getLastName());
+        employeeDto.setEmail(employee.getEmail());
+        employeeDto.setDepartment(employee.getDepartment());
+        employeeDto.setPhone(employee.getPhone());
+        employeeDto.setDesignation(employee.getDesignation());
+        employeeDto.setDateOfJoining(employee.getDateOfJoining());
+        employeeDto.setIsActive(employee.getIsActive());
+        return employeeDto;
     }
 }

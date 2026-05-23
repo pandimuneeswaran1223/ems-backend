@@ -12,6 +12,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -44,6 +46,11 @@ public class AuthService {
         {
             throw new RuntimeException("Invalid Credentials");
         }
+
+        // lastLogin update pannrom
+        users.setLastLogin(LocalDateTime.now());
+        usersRepository.save(users);
+
         String token=jwtUtil.genereteToken(users.getUserName(),users.getRole().name());
         return new LoginResponse(token,users.getRole().name(),users.getUserName(),users.getIsPasswordReset());
     }

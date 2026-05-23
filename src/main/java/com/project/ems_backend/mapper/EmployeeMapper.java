@@ -3,6 +3,8 @@ package com.project.ems_backend.mapper;
 import com.project.ems_backend.dto.EmployeeDto;
 import com.project.ems_backend.entity.Employee;
 
+import java.time.LocalDate;
+
 public class EmployeeMapper {
 
     public static Employee mapToEmployeeDto(EmployeeDto employeeDto)
@@ -14,7 +16,11 @@ public class EmployeeMapper {
         employee.setDepartment(employeeDto.getDepartment());
         employee.setPhone(employeeDto.getPhone());
         employee.setDesignation(employeeDto.getDesignation());
-        employee.setDateOfJoining(employeeDto.getDateOfJoining());
+        employee.setDateOfJoining(
+                employeeDto.getDateOfJoining() != null ?
+                        employeeDto.getDateOfJoining() :
+                        LocalDate.now()
+        );
         employee.setIsActive(employeeDto.getIsActive()!=null?employeeDto.getIsActive():true);
         return employee;
     }

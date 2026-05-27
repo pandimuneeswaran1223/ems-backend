@@ -20,4 +20,6 @@ public class EmployeeDto {
     private String designation;
     private LocalDate dateOfJoining;
     private Boolean isActive;
+    // EmployeeDto.java la add pannanum:
+    private String userRole; // ← ADD
 }

@@ -10,6 +10,7 @@ public class EmployeeMapper {
     public static Employee mapToEmployeeDto(EmployeeDto employeeDto)
     {
         Employee employee = new Employee();
+
         employee.setFirstName(employeeDto.getFirstName());
         employee.setLastName(employeeDto.getLastName());
         employee.setEmail(employeeDto.getEmail());
@@ -28,6 +29,7 @@ public class EmployeeMapper {
     public static EmployeeDto mapToEmployee(Employee employee)
     {
         EmployeeDto employeeDto = new EmployeeDto();
+
         employeeDto.setId(employee.getId());
         employeeDto.setFirstName(employee.getFirstName());
         employeeDto.setLastName(employee.getLastName());
@@ -37,6 +39,12 @@ public class EmployeeMapper {
         employeeDto.setDesignation(employee.getDesignation());
         employeeDto.setDateOfJoining(employee.getDateOfJoining());
         employeeDto.setIsActive(employee.getIsActive());
+
+        // EmployeeMapper.java la mapToEmployeeDto() la add pannanum:
+        if (employee.getUsers() != null) {
+            employeeDto.setUserRole(employee.getUsers().getRole().name());
+        }
+
         return employeeDto;
     }
 }
